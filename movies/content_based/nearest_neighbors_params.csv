@@ -1,0 +1,10 @@
+metric,n_neighbors
+cosine,10
+cosine,15
+cosine,20
+euclidean,10
+euclidean,15
+euclidean,20
+cityblock,10
+cityblock,15
+cityblock,20

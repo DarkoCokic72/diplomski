@@ -1,0 +1,10 @@
+	metric	n_neighbors	cases_found	cases_not_found	avg_rank
+0	cosine	10	22	12	2.0
+1	cosine	15	23	11	3.0
+2	cosine	20	24	10	3.0
+3	euclidean	10	22	12	2.0
+4	euclidean	15	23	11	3.0
+5	euclidean	20	24	10	3.0
+6	cityblock	10	22	12	2.0
+7	cityblock	15	24	10	3.0
+8	cityblock	20	24	10	3.0

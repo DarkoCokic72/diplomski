@@ -1,0 +1,5 @@
+is_user_based,sim_name
+True,cosine
+True,pearson
+False,cosine
+False,pearson

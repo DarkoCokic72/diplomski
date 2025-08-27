@@ -1,0 +1,8 @@
+scikit-learn
+scikit-surprise
+pandas
+numpy
+openai
+tiktoken
+langchain_community
+matplotlib
