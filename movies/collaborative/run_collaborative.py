@@ -56,14 +56,19 @@ def sort_predictions(predictions: list[Prediction]):
     for bucket in buckets:
         predictions.extend(bucket)
 
+    return predictions
 
 
-def get_predictions(not_rated: list):
+
+def get_predictions(not_rated: list, userId: int):
+    predictions = []
     for not_rated_movie in not_rated:
 
-        res: Prediction = algo.predict(raw_uid, not_rated_movie, verbose=True)
+        res: Prediction = algo.predict(userId, not_rated_movie, verbose=True)
         if res.est >= 3:  # why bother showing items that user won't like
             predictions.append(res)
+
+    return predictions
 
 def get_not_rated_items(user_ratings: list[tuple], number_of_all_items: int):
     indices = np.array([x[0] for x in user_ratings])
@@ -76,22 +81,24 @@ def get_not_rated_items(user_ratings: list[tuple], number_of_all_items: int):
 
     return not_rated
 
+
 def recommend_items_to_user(userId: int):
-
-    pass
-
-if __name__=='__main__':
-    raw_uid = 100
-    algo: KNNWithZScore = load_collaborative()
-    inner_uid = algo.trainset.to_inner_uid(raw_uid)
-    xrs = algo.xr #users
+    # algo: KNNWithZScore = load_collaborative()
+    inner_uid = algo.trainset.to_inner_uid(userId)
+    xrs = algo.xr  # users
     number_of_items = algo.n_y
-
 
     users_ratings: list[tuple] = xrs[inner_uid]
     not_rated_items = get_not_rated_items(users_ratings, number_of_items)
 
-    predictions = []
-    get_predictions(not_rated_items)
+    predictions = get_predictions(not_rated_items, userId)
+    predictions = sort_predictions(predictions)
 
-    sort_predictions(predictions)
+    print(predictions[-1])
+
+
+algo: KNNWithZScore = load_collaborative()
+
+
+if __name__=='__main__':
+    recommend_items_to_user(100)
