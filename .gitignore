@@ -301,3 +301,4 @@ pyrightconfig.json
 
 data/
 movies/.idea
+*.png
