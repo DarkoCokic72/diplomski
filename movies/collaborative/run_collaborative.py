@@ -4,6 +4,7 @@ from surprise import KNNWithZScore
 from util.load_ratings import load_ratings
 import pickle
 import math
+import random
 
 algo_saved_path = f'./trained_model/collaborative_model.pkl'
 
@@ -64,7 +65,7 @@ def get_predictions(not_rated: list, userId: int):
     predictions = []
     for not_rated_movie in not_rated:
 
-        res: Prediction = algo.predict(userId, not_rated_movie, verbose=True)
+        res: Prediction = algo.predict(userId, not_rated_movie)
         if res.est >= 3:  # why bother showing items that user won't like
             predictions.append(res)
 
@@ -82,6 +83,13 @@ def get_not_rated_items(user_ratings: list[tuple], number_of_all_items: int):
     return not_rated
 
 
+def select_random_predictions(predictions):
+    random.seed(42)
+    random_recommendation: list[Prediction] = random.sample(predictions, 15)
+    random_recommendation = [x.iid for x in random_recommendation]
+    return random_recommendation
+
+
 def recommend_items_to_user(userId: int):
     # algo: KNNWithZScore = load_collaborative()
     inner_uid = algo.trainset.to_inner_uid(userId)
@@ -94,7 +102,8 @@ def recommend_items_to_user(userId: int):
     predictions = get_predictions(not_rated_items, userId)
     predictions = sort_predictions(predictions)
 
-    print(predictions[-1])
+    random_recommendation = select_random_predictions(predictions)
+    return  random_recommendation
 
 
 algo: KNNWithZScore = load_collaborative()
