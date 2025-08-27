@@ -1,0 +1,13 @@
+algo_name,similarity_name,user_based
+knn_basic,cosine,True
+knn_basic,cosine,False
+knn_basic,pearson,True
+knn_basic,pearson,False
+knn_with_means,cosine,True
+knn_with_means,cosine,False
+knn_with_means,pearson,True
+knn_with_means,pearson,False
+knn_with_zscore,cosine,True
+knn_with_zscore,cosine,False
+knn_with_zscore,pearson,True
+knn_with_zscore,pearson,False
