@@ -13,6 +13,7 @@ def load_movies_metadata(verbose: bool = True):
     return df
 
 def get_movies_ids():
+    df = load_movies_metadata()
 def load_movies_metadata_small(verbose: bool = True):
     filepath: str = f"../data/movies_metadata_small.csv"
     df = load_file(filepath, sep=",")
