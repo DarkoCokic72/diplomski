@@ -1,4 +1,5 @@
 from pandas.core.interchange.dataframe_protocol import DataFrame
+import pandas as pd
 
 from util.load_file import load_file
 from util.get_column_names import get_columns
@@ -7,6 +8,8 @@ from util.get_column_names import get_columns
 def load_movies_metadata(verbose: bool = True):
     filepath: str = f"../data/movies_metadata.csv"
     df = load_file(filepath, sep=",")
+    df['id'] = pd.to_numeric(df['id'])
+
     return df
 
 def load_movies_metadata_small(verbose: bool = True):
