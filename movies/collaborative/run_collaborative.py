@@ -2,6 +2,7 @@ import numpy as np
 from surprise import Reader, Dataset, Prediction
 from surprise import KNNWithZScore
 from util.load_ratings import load_ratings
+from util.load_movies_metadata import load_movies_metadata, get_movies_ids
 import pickle
 import math
 import random
@@ -86,6 +87,10 @@ def get_not_rated_items(user_ratings: list[tuple], number_of_all_items: int):
 
     return not_rated
 
+def filter_non_existent_ids(predictions: list[Prediction]):
+    movie_ids = get_movies_ids()
+    new_predictions = [p for p in predictions if p.iid in movie_ids]
+    return  new_predictions
 
 def select_random_predictions(predictions):
     random.seed(42)
@@ -96,6 +101,23 @@ def select_random_predictions(predictions):
     random_recommendation = [x.iid for x in random_recommendation]
     return random_recommendation
 
+def get_movies_by_ids(ids: list[int]):
+    df = load_movies_metadata()
+    columns_to_select  = [
+        'id',
+        'imdb_id',
+        'title',
+        'genres',
+        'original_title',
+        'original_language',
+        'overview',
+        'vote_average',
+        'spoken_languages']
+    selected_movies = df.loc[df['id'].isin(ids)]
+    selected_movies = selected_movies[columns_to_select]
+    selected_movies = selected_movies.to_dict(orient='records')
+
+    return selected_movies
 
 def recommend_items_to_user(user_id: int):
     inner_uid = algo.trainset.to_inner_uid(user_id)
@@ -107,8 +129,9 @@ def recommend_items_to_user(user_id: int):
 
     predictions = get_predictions(not_rated_items, user_id)
     predictions = sort_predictions(predictions)
-
+    predictions = filter_non_existent_ids(predictions)
     random_recommendation = select_random_predictions(predictions)
+    random_recommendation = get_movies_by_ids(random_recommendation)
     return  random_recommendation
 
 
@@ -116,4 +139,4 @@ algo: KNNWithZScore = load_collaborative()
 
 
 if __name__=='__main__':
-    recommend_items_to_user(100)
+    print(recommend_items_to_user(600))
