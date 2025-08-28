@@ -89,7 +89,10 @@ def get_not_rated_items(user_ratings: list[tuple], number_of_all_items: int):
 
 def select_random_predictions(predictions):
     random.seed(42)
-    random_recommendation: list[Prediction] = random.sample(predictions, 15)
+    if len(predictions) < 15:
+        random_recommendation = predictions
+    else:
+        random_recommendation: list[Prediction] = random.sample(predictions, 15)
     random_recommendation = [x.iid for x in random_recommendation]
     return random_recommendation
 
