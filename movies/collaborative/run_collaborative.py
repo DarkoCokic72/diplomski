@@ -5,8 +5,9 @@ from util.load_ratings import load_ratings
 import pickle
 import math
 import random
+import os
 
-algo_saved_path = f'./trained_model/collaborative_model.pkl'
+algo_saved_path = os.path.join('trained_model', "collaborative_model.pkl")
 
 
 def train_collaborative():
@@ -28,7 +29,10 @@ def train_collaborative():
 
 
 def load_collaborative():
-    with open(algo_saved_path, 'rb') as file:
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    load_path = os.path.join(script_dir, algo_saved_path)
+    print(os.getcwd())
+    with open(load_path, 'rb') as file:
         algo = pickle.load(file)
 
     return algo
@@ -90,16 +94,15 @@ def select_random_predictions(predictions):
     return random_recommendation
 
 
-def recommend_items_to_user(userId: int):
-    # algo: KNNWithZScore = load_collaborative()
-    inner_uid = algo.trainset.to_inner_uid(userId)
+def recommend_items_to_user(user_id: int):
+    inner_uid = algo.trainset.to_inner_uid(user_id)
     xrs = algo.xr  # users
     number_of_items = algo.n_y
 
     users_ratings: list[tuple] = xrs[inner_uid]
     not_rated_items = get_not_rated_items(users_ratings, number_of_items)
 
-    predictions = get_predictions(not_rated_items, userId)
+    predictions = get_predictions(not_rated_items, user_id)
     predictions = sort_predictions(predictions)
 
     random_recommendation = select_random_predictions(predictions)
