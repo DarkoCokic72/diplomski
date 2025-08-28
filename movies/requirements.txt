@@ -1,5 +1,5 @@
 scikit-learn==1.5.2
-scikit-surprise==1.1.
+scikit-surprise==1.1.4
 pandas==2.2.3
 numpy==1.26.4
 openai==1.55.3
