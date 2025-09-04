@@ -5,6 +5,7 @@ from langchain_ollama import OllamaEmbeddings
 from util.load_file import  load_file
 import numpy as np
 from sklearn.neighbors import NearestNeighbors
+import os
 
 def load_test_file():
     filepath = f'./test_data/content_test_data.csv'
@@ -25,7 +26,10 @@ def get_embedding_model(model: str):
 
 
 def load_vector_store(model: str):
-    vectorstore_name = f"./vectorstore/{model.replace(':', '_')}_embeddings.pkl"
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    vctrstr = os.path.join("vectorstore", f"{model.replace(':', '_')}_embeddings.pkl")
+    # vectorstore_name = f"./vectorstore/{model.replace(':', '_')}_embeddings.pkl"
+    vectorstore_name = os.path.join(script_dir, vctrstr)
     with open(vectorstore_name, 'rb') as f:
         vectorstore = pickle.load(f)
 
