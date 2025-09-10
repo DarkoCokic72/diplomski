@@ -1,0 +1,15 @@
+<mat-card class="card">
+    <mat-card-header>
+        <mat-card-title>{{movie.title}}</mat-card-title>
+        <mat-card-subtitle>{{movie.original_title}}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+        <p>{{movie.overview}}</p>
+        <p>Vote average: {{movie.vote_average}}/10</p>
+    </mat-card-content>
+    <mat-card-footer class="card-footer">
+        <mat-chip-listbox>
+            <mat-chip *ngFor="let genre of movie.genres">{{genre}}</mat-chip>
+        </mat-chip-listbox>
+    </mat-card-footer>
+</mat-card>

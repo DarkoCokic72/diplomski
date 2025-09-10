@@ -1,0 +1,11 @@
+.card {
+  max-width: 400px;
+}
+
+.card-footer {
+  padding: 16px;
+}
+
+.chip-margin {
+    margin: auto;
+}
