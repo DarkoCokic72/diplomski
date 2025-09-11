@@ -1,6 +1,15 @@
+<div class="grid flex-col form">
+    <form [formGroup]="userProfileFormGroup" (ngSubmit)="onSubmit()">
+        <mat-form-field appearance="outline">
+            <mat-label>Enter user ID</mat-label>
+            <input matInput type="number" formControlName="userId" />
+        </mat-form-field>
+        <button matButton="elevated" type="submit" [disabled]="!userProfileFormGroup.valid">Find recommndations</button>
 
+    </form>
+</div>
 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
     @for(movie of movies; track movie.id){
-        <movie-details-card-component [movie]="movie" class="div-card-margin"></movie-details-card-component>
+    <movie-details-card-component [movie]="movie" class="div-card-margin"></movie-details-card-component>
     }
 </div>

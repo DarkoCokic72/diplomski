@@ -1,28 +1,56 @@
-import { Component, inject, OnInit } from '@angular/core';
-import { MatCardModule, MatCard } from '@angular/material/card';
+import { Component, OnInit } from '@angular/core';
+import { MatCardModule } from '@angular/material/card';
 import { MovieDetailsCard } from '../../interfaces/movie-details-card';
 import { MatChipsModule } from '@angular/material/chips';
 import { CommonModule } from '@angular/common';
 import { MovieDetailsCardComponent } from '../movie-details-card-component/movie-details-card-component';
 import { RecommenderService } from '../../services/recommender-service';
-import { catchError, pipe } from 'rxjs';
+import { ReactiveFormsModule, FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
 
-
+const MODULES = [
+	MatCardModule,
+	MatChipsModule,
+	CommonModule,
+	ReactiveFormsModule,
+	MatFormFieldModule,
+	MatInputModule,
+	MatButtonModule
+]
 
 @Component({
 	selector: 'colaborative-component',
-	imports: [MatCardModule, MatChipsModule, CommonModule, MovieDetailsCardComponent],
+	imports: [
+		...MODULES,
+		MovieDetailsCardComponent,
+	],
 	templateUrl: './colaborative-component.html',
 	styleUrl: './colaborative-component.css',
 
 })
 export class ColaborativeComponent implements OnInit {
 	ngOnInit(): void {
-		this.recommenderService.getRecommendationsCollaborative(300).subscribe(
+		this.onSubmit()
+	}
+	constructor(private recommenderService: RecommenderService) { }
+	movies!: MovieDetailsCard[];
+	userProfileFormGroup = new FormGroup({
+		userId: new FormControl(
+			2,
+			[
+				Validators.max(671),
+				Validators.min(1),
+				Validators.required
+			]),
+	})
+
+	onSubmit() {
+		this.recommenderService.getRecommendationsCollaborative(this.userProfileFormGroup.value.userId as number).subscribe(
 			{
 				next: data => {
 					this.movies = data
-					// console.log(this.movies)
 				},
 				error: err => {
 					console.log(err)
@@ -31,6 +59,4 @@ export class ColaborativeComponent implements OnInit {
 			}
 		);
 	}
-	constructor(private recommenderService: RecommenderService) { }
-	movies!: MovieDetailsCard[];
 }

@@ -5,3 +5,9 @@
 .div-card-margin{
     margin: 10px;
 }
+
+.form {
+  display: flex;
+  align-items: center; 
+  justify-content: center;
+}
