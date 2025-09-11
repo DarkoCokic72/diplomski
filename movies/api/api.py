@@ -1,8 +1,10 @@
 from collaborative.run_collaborative import recommend_items_to_user
 from flask import  Flask, request
 from content_based.run_content_based import ContentBasedRecommender
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app)
 content_based_recommender = ContentBasedRecommender()
 
 
