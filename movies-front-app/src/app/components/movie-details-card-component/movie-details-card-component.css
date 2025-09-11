@@ -2,10 +2,18 @@
   max-width: 400px;
 }
 
+.card-background-color{
+  background-color: #f3eee5;
+}
+
 .card-footer {
   padding: 16px;
 }
 
 .chip-margin {
     margin: auto;
+}
+
+.mat-chip {
+  font-size: 36px !important; 
 }

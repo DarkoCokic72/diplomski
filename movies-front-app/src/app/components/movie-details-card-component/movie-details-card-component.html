@@ -1,15 +1,19 @@
-<mat-card class="card">
-    <mat-card-header>
-        <mat-card-title>{{movie.title}}</mat-card-title>
-        <mat-card-subtitle>{{movie.original_title}}</mat-card-subtitle>
+<mat-card
+    class="rounded-xl overflow-hidden shadow-lg p-6 bg-white transition-transform transform hover:scale-105 h-full flex flex-col card-background-color">
+    <mat-card-header class="mb-4">
+        <mat-card-title class="ext-xl font-semibold text-gray-900">{{movie.title}}</mat-card-title>
+        <mat-card-subtitle class="text-sm text-gray-500">{{movie.original_title}}</mat-card-subtitle>
     </mat-card-header>
-    <mat-card-content>
-        <p>{{movie.overview}}</p>
-        <p>Vote average: {{movie.vote_average}}/10</p>
+    <mat-card-content class=" flex-grow">
+        <p class="text-gray-700">{{movie.overview}}</p>
     </mat-card-content>
     <mat-card-footer class="card-footer">
+        <p>Vote average: {{movie.vote_average}}/10</p>
+
         <mat-chip-listbox>
-            <mat-chip *ngFor="let genre of movie.genres">{{genre}}</mat-chip>
+            @for(genre of movie.genres; track genre){
+                <mat-chip>{{genre | emojifyGenre}}</mat-chip>
+            }
         </mat-chip-listbox>
     </mat-card-footer>
 </mat-card>

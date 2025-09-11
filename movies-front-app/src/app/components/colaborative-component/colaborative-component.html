@@ -1,4 +1,6 @@
 
-<div>
-    <movie-details-card-component *ngFor="let movie of movies" [movie]="movie" class="div-card-margin"></movie-details-card-component>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+    @for(movie of movies; track movie.id){
+        <movie-details-card-component [movie]="movie" class="div-card-margin"></movie-details-card-component>
+    }
 </div>

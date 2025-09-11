@@ -3,10 +3,11 @@ import { MovieDetailsCard } from '../../interfaces/movie-details-card';
 import { MatCardModule } from '@angular/material/card';
 import { MatChipsModule } from '@angular/material/chips';
 import { CommonModule } from '@angular/common';
+import { EmojifyGenrePipePipe } from '../../pipes/emojify-genre-pipe-pipe';
 
 @Component({
   selector: 'movie-details-card-component',
-  imports: [MatCardModule, MatChipsModule, CommonModule],
+  imports: [MatCardModule, MatChipsModule, CommonModule, EmojifyGenrePipePipe],
   templateUrl: './movie-details-card-component.html',
   styleUrl: './movie-details-card-component.css'
 })
