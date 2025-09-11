@@ -9,6 +9,8 @@ import { ReactiveFormsModule, FormControl, FormGroup, Validators } from '@angula
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+
 
 const MODULES = [
 	MatCardModule,
@@ -17,7 +19,8 @@ const MODULES = [
 	ReactiveFormsModule,
 	MatFormFieldModule,
 	MatInputModule,
-	MatButtonModule
+	MatButtonModule,
+	MatProgressSpinnerModule
 ]
 
 @Component({
@@ -35,6 +38,7 @@ export class ColaborativeComponent implements OnInit {
 		this.onSubmit()
 	}
 	constructor(private recommenderService: RecommenderService) { }
+	loading: boolean = false;
 	movies!: MovieDetailsCard[];
 	userProfileFormGroup = new FormGroup({
 		userId: new FormControl(
@@ -47,10 +51,14 @@ export class ColaborativeComponent implements OnInit {
 	})
 
 	onSubmit() {
+		this.loading = true;
+		this.movies = []
 		this.recommenderService.getRecommendationsCollaborative(this.userProfileFormGroup.value.userId as number).subscribe(
 			{
 				next: data => {
 					this.movies = data
+					this.loading = false
+
 				},
 				error: err => {
 					console.log(err)
