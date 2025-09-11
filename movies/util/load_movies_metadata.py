@@ -17,6 +17,7 @@ def load_movies_metadata(verbose: bool = True):
     filepath: str = f"../data/movies_metadata.csv"
     df = load_file(filepath, sep=",")
     df['id'] = pd.to_numeric(df['id'])
+    df[["overview"]] = df[["overview"]].fillna('')
 
     df = extract_list_genre_names(df)
 
