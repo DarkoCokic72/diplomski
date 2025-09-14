@@ -16,8 +16,8 @@ def hello_world():
 def recommend_items_by_user_id(user_id: int):
     return recommend_items_to_user(user_id)
 
-@app.route('/content-based/<int:user_id>', methods=["GET"])
-def recommend_to_user_cb(user_id: int):
+@app.route('/content-based', methods=["GET"])
+def recommend_to_user_cb():
     req = request.get_json(force=True)
     search_string = req["search_string"]
     return content_based_recommender.recommend_content(search_string)
