@@ -7,12 +7,14 @@
                 <div class="rounded-2xl p-3 max-w-[85%] sm:max-w-[75%]"
                     [class]="isUserMessage(message) ? 'bg-indigo-500 text-white self-end' : 'bg-gray-300 text-gray-800 self-start'">
                     @if(isUserMessage(message)) {
-                        <div>{{ message.content }}</div>
-                    } @else {
-                        @for(movie of message.content; track movie){
-                            <movie-details-card-component [movie]="movie"></movie-details-card-component>
-                        }
-                        <!-- <div>{{ message.content }}</div> -->
+                    <div>{{ message.content }}</div>
+                    } @else if (message.type === "system"){
+
+                        <p-carousel [value]="message.content" [numVisible]="1" [numScroll]="1" [circular]="true" [showIndicators]="true">
+                            <ng-template let-movie #item>
+                                <movie-details-card-component [movie]="movie"></movie-details-card-component>
+                            </ng-template>
+                        </p-carousel>
                     }
                 </div>
             </div>
