@@ -7,6 +7,7 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MovieDetailsCardComponent } from '../movie-details-card-component/movie-details-card-component';
 
 const MODULES = [
 	MatCardModule,
@@ -21,7 +22,7 @@ const MODULES = [
 
 @Component({
   selector: 'content-based',
-  imports: [...MODULES],
+  imports: [...MODULES, MovieDetailsCardComponent],
   templateUrl: './content-based.html',
   styleUrl: './content-based.css'
 })
