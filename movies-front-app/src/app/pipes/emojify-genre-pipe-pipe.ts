@@ -29,11 +29,15 @@ export class EmojifyGenrePipePipe implements PipeTransform {
   "Family": "👪",
   "War": "⚔️",
   "History": "🏰",
+  "Foreign": "🌐",
 }
   transform(value: string): string {
-    const emoji = this.emojis[value]
+    let emoji = this.emojis[value]
+    if (!emoji){
+      emoji = ""
+    }
     let retGenre = emoji + " " + value
-    return retGenre;
+    return retGenre.trim();
   }
 
 }
