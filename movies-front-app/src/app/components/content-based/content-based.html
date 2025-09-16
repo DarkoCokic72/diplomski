@@ -10,16 +10,27 @@
                     <div>{{ message.content }}</div>
                     } @else if (message.type === "system"){
 
-                        <p-carousel [value]="message.content" [numVisible]="1" [numScroll]="1" [circular]="true" [showIndicators]="true">
-                            <ng-template let-movie #item>
-                                <movie-details-card-component [movie]="movie"></movie-details-card-component>
-                            </ng-template>
-                        </p-carousel>
+                    <p-carousel [value]="message.content" [numVisible]="1" [numScroll]="1" [circular]="true"
+                        [showIndicators]="true">
+                        <ng-template let-movie #item>
+                            <movie-details-card-component [movie]="movie"></movie-details-card-component>
+                        </ng-template>
+                    </p-carousel>
                     }
                 </div>
             </div>
             }
         </mat-card-content>
+        <mat-card-actions class="p-4 bg-gray-100 border-t border-gray-200 flex items-center space-x-2">
+            <mat-form-field appearance="outline" class="flex-grow" subscriptSizing="dynamic">
+                <mat-label>Type a message...</mat-label>
+                <input matInput [(ngModel)]="newMessage" (keyup.enter)="sendMessage()" placeholder="Start typing...">
+            </mat-form-field>
+            <button mat-fab extended color="primary" (click)="sendMessage()" class="self-center">
+                <div>Send</div>
+                <mat-icon fontIcon="send"></mat-icon>
+            </button>
+        </mat-card-actions>
     </mat-card>
 
 </div>

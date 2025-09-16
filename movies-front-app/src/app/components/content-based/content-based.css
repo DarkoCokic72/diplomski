@@ -16,3 +16,9 @@
     width: 12px;
     height: 12px;
 }
+
+.flex-container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}

@@ -10,6 +10,9 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MovieDetailsCardComponent } from '../movie-details-card-component/movie-details-card-component';
 import { ButtonModule } from 'primeng/button';
 import { CarouselModule } from 'primeng/carousel';
+import { FormsModule } from '@angular/forms';
+import { MatIconModule } from '@angular/material/icon';
+
 
 
 const MODULES = [
@@ -19,10 +22,13 @@ const MODULES = [
   ReactiveFormsModule,
   MatFormFieldModule,
   MatInputModule,
-  // MatButtonModule,
+  MatButtonModule,
   MatProgressSpinnerModule,
   ButtonModule,
-  CarouselModule
+  CarouselModule,
+  FormsModule,
+  MatIconModule,
+
 ]
 
 @Component({
@@ -32,6 +38,7 @@ const MODULES = [
   styleUrl: './content-based.css'
 })
 export class ContentBasedComponent {
+  newMessage!: string;
   messages: any[] = [
     {
       "type": "user",
@@ -317,6 +324,11 @@ export class ContentBasedComponent {
     },
 
   ];
+
+  sendMessage() {
+    this.messages.push({ "type": "user", "content": this.newMessage })
+    this.newMessage = ''
+  }
 
   isUserMessage(message: any) {
     return message.type === 'user'
