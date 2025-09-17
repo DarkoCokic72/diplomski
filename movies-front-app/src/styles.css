@@ -1,36 +1,49 @@
 @import "tailwindcss";
 @import "tailwindcss/preflight" layer(base);
-@layer base {
-          *, ::before, ::after {
-            border-style: none; 
-          }
-        }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+@layer base {
+
+  *,
+  ::before,
+  ::after {
+    border-style: none;
+  }
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
 
 
 :host ::ng-deep .p-carousel-indicators {
-  /* Position the indicators at the bottom of the carousel container */
   position: absolute;
-  bottom: 10px; 
+  bottom: 10px;
   left: 50%;
   transform: translateX(-50%);
 }
 
 :host ::ng-deep .p-carousel-indicators .p-carousel-indicator button {
-  /* Style the individual indicator buttons */
   width: 12px;
   height: 12px;
-  border-radius: 50%; /* Make them circular */
-  background-color: #888; /* A visible grey color */
+  border-radius: 50%;
+  background-color: #888;
   border: none;
-  margin: 0 4px; /* Add some space between them */
+  margin: 0 4px;
   cursor: pointer;
   transition: background-color 0.3s;
 }
 
 :host ::ng-deep .p-carousel-indicators .p-carousel-indicator.p-highlight button {
-  /* Style the active indicator */
-  background-color: #4a90e2; /* A blue color to highlight the active slide */
+  background-color: #4a90e2;
+}
+
+h1 {
+  font-size: 2.5em;
+  margin-block: 0.67em;
 }

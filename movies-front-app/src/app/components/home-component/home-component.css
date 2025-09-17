@@ -1,0 +1,27 @@
+p {
+    font-size: 1.5em;
+    margin-block: 0.67em;
+}
+
+.container {
+    display: grid;
+    place-items: center;
+    justify-content: center;
+
+}
+
+
+
+li {
+    font-size: 1.2em;
+    margin: 0.2em 0.5em;
+    padding: 0.1em;
+
+}
+
+
+li::marker {
+    color: darkcyan;
+    font-size: 1.2em;
+    content: "⭐ ";
+}

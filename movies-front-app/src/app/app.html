@@ -183,14 +183,17 @@
     }
   }
 </style>
-  <mat-toolbar>
-    <mat-toolbar-row>
-      <nav>
-        <a matButton="elevated" routerLink="/colaborative"> Collaborative</a>
-        <a matButton="elevated" routerLink="/content-based">Content Based</a>
-      </nav>
-    </mat-toolbar-row>
-  </mat-toolbar>
+<mat-toolbar>
+  <mat-toolbar-row>
+    <nav class="navbar-container">
+      <a matMiniFab aria-label="Home" routerLink="/">
+        <mat-icon>home</mat-icon>
+      </a>
+      <a matButton="elevated" routerLink="/colaborative"> Collaborative</a>
+      <a matButton="elevated" routerLink="/content-based">Content Based</a>
+    </nav>
+  </mat-toolbar-row>
+</mat-toolbar>
 
 <div class="p-8 bg-gray-100 min-h-screen font-sans antialiased">
 

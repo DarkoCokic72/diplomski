@@ -1,7 +1,13 @@
-nav > a {
+nav>a {
     margin: 0px 5px;
 }
 
 mat-toolbar {
     background-color: #93bff5;
+}
+
+.navbar-container {
+    display: flex;
+    align-items: center;
+    height: 60px;
 }
