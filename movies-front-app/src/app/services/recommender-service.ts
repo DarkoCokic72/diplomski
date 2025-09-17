@@ -13,4 +13,13 @@ export class RecommenderService {
   getRecommendationsCollaborative(userId: number): Observable<MovieDetailsCard[]> {
     return this.http.get<MovieDetailsCard[]>(`${this.baseUrl}/collab/${userId}`)
   }
+
+  getRecommendationContentBased(searchString: string){
+    var payload = {
+      "search_string": searchString
+    }
+
+    return this.http.post<MovieDetailsCard[]>(`${this.baseUrl}/content-based`, payload)
+
+  }
 }
