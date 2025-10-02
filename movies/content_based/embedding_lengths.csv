@@ -1,0 +1,6 @@
+	model	vector_length
+0	llama3.2	3072
+1	mistral	4096
+2	granite3.3	4096
+3   qwen3:4b    2560
+
