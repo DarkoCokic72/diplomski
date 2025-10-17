@@ -302,3 +302,8 @@ pyrightconfig.json
 data/
 movies/.idea
 *.png
+
+
+# Temporary MS Word files
+~$*
+~*.tmp
